@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Location d'un habit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="mesStyles.css">
+    <script src="controles.js"></script>
+</head>
+
+<body>
+    <form method="post" onsubmit="return verif2()">
+        <fieldset>
+            <legend>Location d'un habit</legend>
+
+            <table>
+                <tr>
+                    <th>Code habit</th>
+                    <td><input type="number" name="co" id="co"></td>
+                </tr>
+
+                <tr>
+                    <th>CIN</th>
+                    <td><input type="text" name="cin" id="cin"></td>
+                </tr>
+
+                <tr>
+                    <th>Durée location (jours)</th>
+                    <td><input type="number" name="d" id="d"></td>
+                </tr>
+            </table>
+
+            <input type="reset" value="Annuler">
+            <input type="submit" value="Louer">
+        </fieldset>
+    </form>
+</body>
+</html>

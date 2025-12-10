@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Service 1 : L'application Web (PHP/Apache)
+  web:
+    build: . # Utilise le Dockerfile dans le répertoire courant
+    image: robes-app:latest # Nom de l'image (optionnel si vous l'avez déjà construite)
+    container_name: site-robes-web
+    ports:
+      - "8080:80"
+    volumes:
+      # Montage des fichiers locaux : toutes les modifications locales seront répercutées dans le conteneur
+      - .:/var/www/html
+    environment:
+      # Passe des variables d'environnement à votre conteneur Web
+      # Elles seront nécessaires dans votre code PHP pour la connexion à la DB
+      DB_HOST: db # Le nom du service Docker Compose de la DB
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: robes_db
+    depends_on:
+      - db # S'assure que la DB démarre avant le conteneur web
+
+  # Service 2 : La Base de Données (MariaDB est un bon choix)
+  db:
+    image: mariadb:10.6
+    container_name: site-robes-db
+    restart: always
+    environment:
+      # Variables d'environnement pour configurer MariaDB
+      MYSQL_ROOT_PASSWORD: password_root
+      MYSQL_DATABASE: robes_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    # Monte un volume persistant pour les données de la base.
+    # Ainsi, les données ne seront pas perdues si vous arrêtez/supprimez le conteneur.
+    volumes:
+      - db-data:/var/lib/mysql
+      # Exécute votre script bd.sql lors du premier démarrage du conteneur DB
+      - ./bd.sql:/docker-entrypoint-initdb.d/bd.sql
+
+volumes:
+  db-data:

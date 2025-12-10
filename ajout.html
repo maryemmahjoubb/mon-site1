@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Ajout habit</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='mesStyles.css'>
+    <script src='controles.js'></script>
+</head>
+<body>
+    <form  method="post" onsubmit="return verif1()">
+       <fieldset>
+        <legend>Ajout d'un habit</legend>
+        <table>
+            <tr>
+            <th>Catégorie</th>
+            <td>
+            <select name="c" id="c">
+                <option value="0">Sélectionner une catégorie</option>
+                <option value="1">Robe soirée</option>
+                <option value="2">Robe de mariée</option>
+                <option value="3">Caftan</option>
+                <option value="4">Costume</option>
+                <option value="5">Jebba</option>
+            </select> 
+            </td>
+            </tr>
+
+            <tr>
+            <th>Description</th>
+            <td><input type="text" name="d" id="d"></td>
+            </tr>
+
+            <tr>
+                <th>Taille</th>
+                <td>
+                    <input type="radio" name="r" value="xs">XS
+                    <input type="radio" name="r" value="s">S 
+                    <input type="radio" name="r" value="m">M
+                    <input type="radio" name="r" value="l">L
+                    <input type="radio" name="r" value="xl">XL
+                </td>
+            </tr>
+
+            <tr>
+                <th>Prix de location</th>
+                <td><input type="number" name="p" id="p"></td>
+            </tr>
+        </table>
+
+        <input type="reset" value="Annuler"> 
+        <input type="submit" value="Ajouter">
+       </fieldset>
+    </form>
+</body>
+</html>
